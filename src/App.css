@@ -7,13 +7,34 @@ main {
   gap: 20px;
 }
 
-/* หัวเรื่อง + ปุ่มสลับธีม */
+/* หัวเรื่อง + ปุ่มสลับธีม/ออกจากระบบ */
 .app-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* หน้าล็อกอิน: การ์ดฟอร์มอยู่กลางจอ คอลัมน์เดียวเสมอ */
+.login-page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-page form {
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 360px;
 }
 
 /* ฟอร์มและช่องกรอก */
