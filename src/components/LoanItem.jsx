@@ -28,15 +28,30 @@ export default function LoanItem({ loan, today, onMarkReturned, onUnmarkReturned
 
   return (
     <li className={`loan-item loan-${status}`}>
-      <strong>{loan.itemName}</strong>
-      <p>เพื่อน: {loan.friendName}</p>
-      <p>วันที่ยืม: {formatThaiDate(loan.borrowedDate)}</p>
-      <p>กำหนดคืน: {formatThaiDate(loan.dueDate)}</p>
-      <p>
-        สถานะ: <span className={`status status-${status}`}>{STATUS_LABEL[status]}</span>
-        {status === STATUS.OVERDUE && ` ${daysOverdue} วัน`}
-      </p>
-      {isReturned && <p>วันที่คืนจริง: {formatThaiDate(loan.returnedDate)}</p>}
+      <div className="loan-head">
+        <strong>{loan.itemName}</strong>
+        <span className={`status status-${status}`}>
+          {STATUS_LABEL[status]}
+          {status === STATUS.OVERDUE && ` ${daysOverdue} วัน`}
+        </span>
+      </div>
+      <p className="loan-friend">👤 {loan.friendName}</p>
+      <dl className="loan-dates">
+        <div>
+          <dt>วันที่ยืม</dt>
+          <dd>{formatThaiDate(loan.borrowedDate)}</dd>
+        </div>
+        <div>
+          <dt>กำหนดคืน</dt>
+          <dd>{formatThaiDate(loan.dueDate)}</dd>
+        </div>
+        {isReturned && (
+          <div>
+            <dt>วันที่คืนจริง</dt>
+            <dd>{formatThaiDate(loan.returnedDate)}</dd>
+          </div>
+        )}
+      </dl>
 
       {!isReturned && (
         <div className="return-row">
@@ -49,7 +64,7 @@ export default function LoanItem({ loan, today, onMarkReturned, onUnmarkReturned
             />
           </label>
           <button type="button" className="mark-returned" onClick={handleMarkReturned}>
-            คืนแล้ว
+            ✓ คืนแล้ว
           </button>
         </div>
       )}
@@ -67,8 +82,8 @@ export default function LoanItem({ loan, today, onMarkReturned, onUnmarkReturned
             ยกเลิกการคืน
           </button>
         )}
-        <button type="button" onClick={() => onEdit(loan)}>
-          แก้ไข
+        <button type="button" className="ghost" onClick={() => onEdit(loan)}>
+          ✏️ แก้ไข
         </button>
       </div>
     </li>

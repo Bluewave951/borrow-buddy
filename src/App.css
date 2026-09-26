@@ -216,3 +216,262 @@ section + section {
   gap: 8px;
   margin-top: 8px;
 }
+
+/* ===== โฉมใหม่: แท็บ สีสัน และมือถือ ===== */
+main.app {
+  gap: 16px;
+  padding-bottom: 96px; /* เว้นที่ให้แถบแท็บล่างบนมือถือ */
+}
+
+.app-header {
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: var(--hero);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 {
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.brand-sub {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.app-header button {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  min-height: 40px;
+  font-size: 0.9rem;
+}
+
+/* แท็บ: แถบด้านบนบนจอใหญ่, แถบล่างติดจอบนมือถือ */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 6px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text);
+  padding: 8px;
+  --tab-color: var(--accent);
+}
+
+.tab-overdue { --tab-color: #ef4444; }
+.tab-outstanding { --tab-color: #f59e0b; }
+.tab-returned { --tab-color: #10b981; }
+.tab-add { --tab-color: #7c3aed; }
+
+.tab[aria-selected='true'] {
+  background: var(--tab-color);
+  color: #fff;
+  font-weight: 700;
+}
+
+.tab-icon {
+  font-size: 1.15rem;
+}
+
+.tab-count {
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  line-height: 22px;
+  background: color-mix(in srgb, var(--tab-color) 18%, transparent);
+  color: var(--tab-color);
+  font-weight: 700;
+}
+
+.tab[aria-selected='true'] .tab-count {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+@media (max-width: 559px) {
+  .app-header .brand-sub { display: none; }
+  .app-header h1 { font-size: 1.35rem; }
+  .brand-logo { width: 44px; height: 44px; font-size: 1.6rem; }
+
+  .tabs {
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    z-index: 10;
+  }
+
+  .tab {
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 2px;
+    font-size: 0.8rem;
+    position: relative;
+  }
+
+  .tab-count {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    min-width: 18px;
+    line-height: 18px;
+    font-size: 0.7rem;
+    padding: 0 4px;
+  }
+}
+
+.tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ค้นหา */
+.search {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search input {
+  padding-left: 42px;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* การ์ดฟอร์มและรายการ */
+form,
+.loan-item {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.loan-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loan-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.loan-head strong {
+  font-size: 1.15rem;
+  color: var(--text-h);
+}
+
+.status {
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.loan-friend {
+  font-weight: 500;
+}
+
+.loan-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 0;
+}
+
+.loan-dates div {
+  flex: 1 1 120px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.loan-dates dt {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.loan-dates dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.mark-returned {
+  background: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+button[type='submit'] {
+  background: linear-gradient(135deg, #7c3aed, #db2777);
+  border: none;
+  color: #fff;
+  padding-inline: 24px;
+}
+
+button.ghost {
+  background: transparent;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px 16px;
+  border-radius: 18px;
+  border: 2px dashed var(--border);
+  background: var(--surface);
+}
